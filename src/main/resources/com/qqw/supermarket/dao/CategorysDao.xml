@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qqw.supermarket.dao.CategorysDao">
+  <resultMap id="BaseResultMap" type="com.qqw.supermarket.model.Categorys">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="number" jdbcType="VARCHAR" property="number" />
+    <result column="name" jdbcType="VARCHAR" property="title" />
+    <result column="is_fresh" jdbcType="INTEGER" property="fresh" />
+    <result column="parent_id" jdbcType="INTEGER" property="parentId" />
+    <result column="status" jdbcType="BIT" property="status" />
+    <result column="is_leaf" jdbcType="BIT" property="leaf" />
+    <result column="nuit_id" jdbcType="INTEGER" property="nuitId" />
+    <result column="memo" jdbcType="VARCHAR" property="memo" />
+    <result column="spate_1" jdbcType="VARCHAR" property="spate1" />
+  </resultMap>
+
+  <resultMap id="ResultMap" type="com.qqw.supermarket.model.Categorys">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="number" jdbcType="VARCHAR" property="number" />
+    <result column="name" jdbcType="VARCHAR" property="title" />
+    <result column="is_fresh" jdbcType="INTEGER" property="fresh" />
+    <result column="parent_id" jdbcType="INTEGER" property="parentId" />
+    <result column="status" jdbcType="BIT" property="status" />
+    <result column="is_leaf" jdbcType="BIT" property="leaf" />
+    <result column="nuit_id" jdbcType="INTEGER" property="nuitId" />
+    <result column="memo" jdbcType="VARCHAR" property="memo" />
+    <result column="spate_1" jdbcType="VARCHAR" property="spate1" />
+    <collection property="children" ofType="categroys"
+                select="com.qqw.supermarket.dao.CategorysDao.selectByParentId"
+                column="parent_id">
+    </collection>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, number, name, is_fresh, parent_id, status, is_leaf, nuit_id, memo, spate_1
+  </sql>
+
+  <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from goods_categorys
+    where id = #{id}
+  </select>
+
+
+  <select id="selectByTop" parameterType="java.lang.Integer" resultMap="ResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from goods_categorys
+    where  parent_id = #{id}
+  </select>
+
+  <select id="selectByParentId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from goods_categorys
+    where parent_id = #{id}
+  </select>
+
+  <delete id="deleteById" parameterType="java.lang.Integer">
+    delete from goods_categorys
+    where id = #{id}
+  </delete>
+
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.qqw.supermarket.model.Categorys" useGeneratedKeys="true">
+    insert into goods_categorys
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="number != null">
+        number,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="fresh != null">
+        is_fresh,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="leaf != null">
+        is_leaf,
+      </if>
+      <if test="nuitId != null">
+        nuit_id,
+      </if>
+      <if test="memo != null">
+        memo,
+      </if>
+      <if test="spate1 != null">
+        spate_1,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="number != null">
+        #{number},
+      </if>
+      <if test="name != null">
+        #{name},
+      </if>
+      <if test="fresh != null">
+        #{fresh},
+      </if>
+      <if test="parentId != null">
+        #{parentId},
+      </if>
+      <if test="status != null">
+        #{status},
+      </if>
+      <if test="leaf != null">
+        #{leaf},
+      </if>
+      <if test="nuitId != null">
+        #{nuitId},
+      </if>
+      <if test="memo != null">
+        #{memo},
+      </if>
+      <if test="spate1 != null">
+        #{spate1},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateById" parameterType="com.qqw.supermarket.model.Categorys">
+    update goods_categorys
+    <set>
+      <if test="number != null">
+        number = #{number},
+      </if>
+      <if test="name != null">
+        name = #{name},
+      </if>
+      <if test="fresh != null">
+        is_fresh = #{fresh},
+      </if>
+      <if test="parentId != null">
+        parent_id = #{parentId},
+      </if>
+      <if test="status != null">
+        status = #{status},
+      </if>
+      <if test="leaf != null">
+        is_leaf = #{leaf},
+      </if>
+      <if test="nuitId != null">
+        nuit_id = #{nuitId},
+      </if>
+      <if test="memo != null">
+        memo = #{memo},
+      </if>
+      <if test="spate1 != null">
+        spate_1 = #{spate1},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+
+
+  <select id="listParentCategorys" resultType="long">
+		select DISTINCT parent_id from goods_categorys
+	</select>
+
+
+  <select id="listCategorys"  resultMap="BaseResultMap" parameterType="map">
+    select
+    <include refid="Base_Column_List" />
+    from goods_categorys
+
+  </select>
+</mapper>

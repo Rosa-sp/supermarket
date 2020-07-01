@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qqw.supermarket.dao.PurchaseDao">
+  <resultMap id="BaseResultMap" type="com.qqw.supermarket.model.Purchase">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="goods_id" jdbcType="VARCHAR" property="goodsId" />
+    <result column="goods_name" jdbcType="VARCHAR" property="goodsName" />
+    <result column="price" jdbcType="DOUBLE" property="price" />
+    <result column="count" jdbcType="INTEGER" property="count" />
+    <result column="money" jdbcType="DOUBLE" property="money" />
+    <result column="provider" jdbcType="VARCHAR" property="provider" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+    <result column="is_del" jdbcType="BIT" property="del" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, goods_id, goods_name, price, count, money, provider, time, is_del, remark
+  </sql>
+
+  <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from purchase
+    where is_del = 0 and id = #{id}
+  </select>
+
+  <select id="listPurchaseByPage"  resultMap="BaseResultMap" parameterType="map">
+    select
+    <include refid="Base_Column_List" />
+    from purchase
+    where is_del = 0
+    <if test="search != null and search != ''">
+      and goods_id like '%${search}%'
+    </if>
+    <if test="sort != null">
+      order by ${sort}
+    </if>
+    <if test="sort != null and order != null">
+      ${order}
+    </if>
+  </select>
+
+  <update id="deleteById" parameterType="java.lang.Integer">
+    update purchase set is_del = 1
+    where id = #{id}
+  </update>
+
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.qqw.supermarket.model.Purchase" useGeneratedKeys="true">
+    insert into purchase
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="goodsId != null">
+        goods_id,
+      </if>
+      <if test="goodsName != null">
+        goods_name,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="count != null">
+        count,
+      </if>
+      <if test="money != null">
+        money,
+      </if>
+      <if test="provider != null">
+        provider,
+      </if>
+      <if test="time != null">
+        time,
+      </if>
+      <if test="del != null">
+        is_del,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="goodsId != null">
+        #{goodsId},
+      </if>
+      <if test="goodsName != null">
+        #{goodsName},
+      </if>
+      <if test="price != null">
+        #{price},
+      </if>
+      <if test="count != null">
+        #{count},
+      </if>
+      <if test="money != null">
+        #{money},
+      </if>
+      <if test="provider != null">
+        #{provider},
+      </if>
+      <if test="time != null">
+        #{time},
+      </if>
+      <if test="del != null">
+        #{del},
+      </if>
+      <if test="remark != null">
+        #{remark},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateById" parameterType="com.qqw.supermarket.model.Purchase">
+    update purchase
+    <set>
+      <if test="goodsId != null">
+        goods_id = #{goodsId},
+      </if>
+      <if test="goodsName != null">
+        goods_name = #{goodsName},
+      </if>
+      <if test="price != null">
+        price = #{price},
+      </if>
+      <if test="count != null">
+        count = #{count},
+      </if>
+      <if test="money != null">
+        money = #{money},
+      </if>
+      <if test="provider != null">
+        provider = #{provider},
+      </if>
+      <if test="time != null">
+        time = #{time},
+      </if>
+      <if test="del != null">
+        is_del = #{del},
+      </if>
+      <if test="remark != null">
+        remark = #{remark},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+</mapper>

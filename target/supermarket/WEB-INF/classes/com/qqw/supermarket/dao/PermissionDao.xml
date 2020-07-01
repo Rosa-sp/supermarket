@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qqw.supermarket.dao.PermissionDao">
+    <resultMap id="BaseResultMap" type="com.qqw.supermarket.model.Permission">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="parent_id" jdbcType="INTEGER" property="parentId" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="name" jdbcType="VARCHAR" property="title" />
+        <result column="action_method" jdbcType="VARCHAR" property="actionMethod" />
+        <result column="action_url" jdbcType="VARCHAR" property="actionUrl" />
+        <result column="digest" jdbcType="VARCHAR" property="digest" />
+        <result column="sort" jdbcType="INTEGER" property="sort" />
+        <result column="type" jdbcType="INTEGER" property="type" />
+        <result column="is_del" jdbcType="BIT" property="del" />
+        <result column="status" jdbcType="INTEGER" property="status" />
+        <result column="create_at" jdbcType="TIMESTAMP" property="createAt" />
+        <result column="update_at" jdbcType="TIMESTAMP" property="updateAt" />
+    </resultMap>
+
+    <resultMap id="ResultMap" type="com.qqw.supermarket.model.Permission">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="parent_id" jdbcType="INTEGER" property="parentId" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="name" jdbcType="VARCHAR" property="title" />
+        <result column="action_method" jdbcType="VARCHAR" property="actionMethod" />
+        <result column="action_url" jdbcType="VARCHAR" property="actionUrl" />
+        <result column="digest" jdbcType="VARCHAR" property="digest" />
+        <result column="type" jdbcType="INTEGER" property="type" />
+        <result column="is_del" jdbcType="BIT" property="del" />
+        <result column="status" jdbcType="INTEGER" property="status" />
+        <result column="create_at" jdbcType="TIMESTAMP" property="createAt" />
+        <result column="update_at" jdbcType="TIMESTAMP" property="updateAt" />
+        <collection property="children" ofType="permission"
+                    select="com.qqw.supermarket.PermissionDao.selectByParentId"
+                    column="parent_id">
+        </collection>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    id, parent_id, name, action_method, action_url, digest, type, sort,is_del, status, create_at,
+    update_at
+  </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from system_permission
+        where is_del = 0 and id = #{id}
+        order by sort
+    </select>
+
+    <select id="selectByTop" parameterType="java.lang.Integer" resultMap="ResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from system_permission
+        where is_del = 0 and parent_id = #{id}
+        order by sort
+    </select>
+
+    <select id="selectByParentId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from system_permission
+        where is_del = 0 and parent_id = #{id}
+        order by sort
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from system_permission
+    where id = #{id}
+  </delete>
+
+    <update id="deleteById" parameterType="java.lang.Integer">
+        update system_permission set is_del = 1
+        where id = #{id}
+    </update>
+
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.qqw.supermarket.model.Permission" useGeneratedKeys="true">
+        insert into system_permission
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="parentId != null">
+                parent_id,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="actionMethod != null">
+                action_method,
+            </if>
+            <if test="actionUrl != null">
+                action_url,
+            </if>
+            <if test="digest != null">
+                digest,
+            </if>
+            <if test="type != null">
+                type,
+            </if>
+            <if test="sort != null">
+                sort,
+            </if>
+            <if test="del != null">
+                is_del,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="createAt != null">
+                create_at,
+            </if>
+            <if test="updateAt != null">
+                update_at,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="parentId != null">
+                #{parentId},
+            </if>
+            <if test="name != null">
+                #{name},
+            </if>
+            <if test="actionMethod != null">
+                #{actionMethod},
+            </if>
+            <if test="actionUrl != null">
+                #{actionUrl},
+            </if>
+            <if test="digest != null">
+                #{digest},
+            </if>
+            <if test="type != null">
+                #{type},
+            </if>
+            <if test="sort != null">
+                #{sort},
+            </if>
+            <if test="del != null">
+                #{del},
+            </if>
+            <if test="status != null">
+                #{status},
+            </if>
+            <if test="createAt != null">
+                #{createAt},
+            </if>
+            <if test="updateAt != null">
+                #{updateAt},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.qqw.supermarket.model.Permission">
+        update system_permission
+        <set>
+            <if test="parentId != null">
+                parent_id = #{parentId},
+            </if>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="actionMethod != null">
+                action_method = #{actionMethod},
+            </if>
+            <if test="actionUrl != null">
+                action_url = #{actionUrl},
+            </if>
+            <if test="digest != null">
+                digest = #{digest},
+            </if>
+            <if test="type != null">
+                type = #{type},
+            </if>
+            <if test="del != null">
+                is_del = #{del},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="createAt != null">
+                create_at = #{createAt},
+            </if>
+            <if test="updateAt != null">
+                update_at = #{updateAt},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <select id="listPermissionByPage"  resultMap="BaseResultMap" parameterType="map">
+        select
+        <include refid="Base_Column_List" />
+        from system_permission
+        where is_del = 0
+        <if test="search != null and search != ''">
+            and name like '%${search}%'
+        </if>
+        order by sort asc
+    </select>
+
+    <delete id="deleteRolePermission" parameterType="Integer">
+    delete from system_role_permission
+    where system_role_id = #{id}
+  </delete>
+
+    <insert id="insertRolePermission" parameterType="Map">
+        insert into system_role_permission (system_role_id, system_permission_id)
+        values
+        <foreach collection="ids" item="permissionId" separator=",">
+            (#{id} , #{permissionId})
+        </foreach>
+    </insert>
+
+
+    <select id="selectAllPermissionByRoles" parameterType="list" resultMap="BaseResultMap">
+        SELECT
+        DISTINCT p.*
+        FROM
+        system_role r
+        inner JOIN
+        system_role_permission rp on (r.id = rp.system_role_id)
+        LEFT JOIN
+        system_permission p on (p.id = rp.system_permission_id)
+        WHERE
+        r.is_del = 0  and p.is_del = 0 and
+        <foreach collection="list" item="role" separator=" or " open=" ( " close=" ) ">
+            r.id = #{role.id}
+        </foreach>
+        ORDER BY sort
+    </select>
+
+</mapper>

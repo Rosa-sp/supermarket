@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qqw.supermarket.dao.SupplierDao">
+  <resultMap id="BaseResultMap" type="com.qqw.supermarket.model.Supplier">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="supplier_id" jdbcType="VARCHAR" property="supplierId" />
+    <result column="supplier_name" jdbcType="VARCHAR" property="supplierName" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="person" jdbcType="VARCHAR" property="person" />
+    <result column="is_del" jdbcType="BIT" property="del" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, supplier_id, supplier_name, address, phone, person, is_del, remark
+  </sql>
+
+  <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from supplier
+    where is_del = 0 and id = #{id}
+  </select>
+
+  <select id="listSupplierByPage"  resultMap="BaseResultMap" parameterType="map">
+    select
+    <include refid="Base_Column_List" />
+    from supplier
+    where is_del = 0
+    <if test="search != null and search != ''">
+      and supplier_name like '%${search}%'
+    </if>
+    <if test="sort != null">
+      order by ${sort}
+    </if>
+    <if test="sort != null and order != null">
+      ${order}
+    </if>
+  </select>
+
+  <update id="deleteById" parameterType="java.lang.Integer">
+    update supplier set is_del = 1
+    where id = #{id}
+  </update>
+
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.qqw.supermarket.model.Supplier" useGeneratedKeys="true">
+    insert into supplier
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="supplierId != null">
+        supplier_id,
+      </if>
+      <if test="supplierName != null">
+        supplier_name,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="person != null">
+        person,
+      </if>
+      <if test="del != null">
+        is_del,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="supplierId != null">
+        #{supplierId},
+      </if>
+      <if test="supplierName != null">
+        #{supplierName},
+      </if>
+      <if test="address != null">
+        #{address},
+      </if>
+      <if test="phone != null">
+        #{phone},
+      </if>
+      <if test="person != null">
+        #{person},
+      </if>
+      <if test="del != null">
+        #{del},
+      </if>
+      <if test="remark != null">
+        #{remark},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateById" parameterType="com.qqw.supermarket.model.Supplier">
+    update supplier
+    <set>
+      <if test="supplierId != null">
+        supplier_id = #{supplierId},
+      </if>
+      <if test="supplierName != null">
+        supplier_name = #{supplierName},
+      </if>
+      <if test="address != null">
+        address = #{address},
+      </if>
+      <if test="phone != null">
+        phone = #{phone},
+      </if>
+      <if test="person != null">
+        person = #{person},
+      </if>
+      <if test="del != null">
+        is_del = #{del},
+      </if>
+      <if test="remark != null">
+        remark = #{remark},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+
+</mapper>

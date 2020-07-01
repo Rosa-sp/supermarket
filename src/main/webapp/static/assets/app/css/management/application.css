@@ -1,0 +1,85 @@
+body{
+	font-family:"Microsoft YaHei","宋体","arial","STHeiti"
+}
+/*全局css */
+.label{
+	font-size: 12px;
+}
+
+/*********** 登录页面****************/
+.login-layout{
+	background-color:#ffffff
+}
+.login-layout .widget-box .widget-body .toolbar>div>a {
+	text-shadow: none;
+}
+.login-layout .widget-box{
+	padding: 0px;
+}
+
+/************home profile******************/
+#user-profile .profile-img {
+	border-radius: 50%;
+	background-clip: padding-box;
+	margin-bottom: 15px;
+	width: 128px;
+	height: 128px;
+}
+#user-profile .profile-label {
+	text-align: center;
+	padding: 5px 0;
+}
+#user-profile .profile-since {
+	text-align: center;
+	margin-top: -5px;
+}
+#user-profile .profile-details {
+	padding: 15px 0;
+	border-top: 1px solid #e7ebee;
+	border-bottom: 1px solid #e7ebee;
+	margin: 15px 0;
+}
+#user-profile .table tr:first-child td {
+	border-top: 0;
+}
+
+#user-profile .table td {
+	padding: 1px 0;
+	border-color: #eee;
+}
+
+.m-space10{clear:both; height:10px;}
+
+.chosen-container, [class*="chosen-container"] {
+	vertical-align: middle;
+}
+.chosen-container-single .chosen-single {
+	border-radius: 0;
+}
+.chosen-container > .chosen-single, [class*="chosen-container"] > .chosen-single {
+	line-height: 28px;
+	height: 32px;
+	box-shadow: none;
+	background: #FAFAFA;
+}
+.chosen-container-single .chosen-drop {
+	border-radius: 0;
+	border-bottom: 3px solid #4492C9;
+	border-color: #4492C9;
+}
+.chosen-container-single .chosen-search {
+	position: relative;
+}
+
+
+
+/* 边距 S ==============================================*/
+.m-mt5{margin-top:5px;}
+.m-mt10{margin-top:10px;}
+.m-mt15{margin-top:15px;}
+.m-mt20{margin-top:20px;}
+
+/* 边距 E ==============================================*/
+
+
+

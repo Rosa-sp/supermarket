@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qqw.supermarket.dao.RoleDao">
+  <resultMap id="BaseResultMap" type="com.qqw.supermarket.model.Role">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="is_del" jdbcType="BIT" property="del" />
+    <result column="status" jdbcType="SMALLINT" property="status" />
+    <result column="create_at" jdbcType="TIMESTAMP" property="createAt" />
+    <result column="update_at" jdbcType="TIMESTAMP" property="updateAt" />
+  </resultMap>
+
+  <resultMap id="ResultMap" type="com.qqw.supermarket.model.Role">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="is_del" jdbcType="BIT" property="del" />
+    <result column="status" jdbcType="SMALLINT" property="status" />
+    <result column="create_at" jdbcType="TIMESTAMP" property="createAt" />
+    <result column="update_at" jdbcType="TIMESTAMP" property="updateAt" />
+    <!-- 权限映射 -->
+    <collection property="permissions" ofType="permission">
+      <id column="permission_id" property="id"></id>
+      <result column="permission_name" property="name"></result>
+    </collection>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, description, is_del, status, create_at, update_at
+  </sql>
+
+  <select id="selectById" parameterType="java.lang.Integer" resultMap="ResultMap">
+    SELECT
+    r.*,
+    p.id AS permission_id,
+    p.NAME as permission_name
+    FROM
+    system_role r
+    LEFT JOIN
+    system_role_permission rp on (r.id = rp.system_role_id)
+    LEFT JOIN
+    system_permission p on (p.id = rp.system_permission_id)
+    WHERE
+    r.is_del = 0 and r.id = #{id}
+  </select>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from system_role
+    where is_del = 0 and id = #{id}
+  </select>
+
+
+
+  <select id="selectByAccountId" parameterType="String" resultMap="BaseResultMap">
+   SELECT
+	r.*
+  FROM
+      system_account_role ar
+      LEFT JOIN system_role r ON ( ar.role_id = r.id and r.is_del = 0  )
+  WHERE
+	 ar.account_id =  #{id};
+  </select>
+
+  <select id="listRoleByPage"  resultMap="BaseResultMap" parameterType="map">
+    select
+    <include refid="Base_Column_List" />
+    from system_role
+    where is_del = 0
+    <if test="search != null and search != ''">
+      and name like '%${search}%'
+    </if>
+    <if test="sort != null">
+      order by ${sort}
+    </if>
+    <if test="sort != null and order != null">
+      ${order}
+    </if>
+  </select>
+
+
+
+  <update id="deleteById" parameterType="java.lang.Integer">
+    update system_role set is_del = 1
+    where id = #{id}
+  </update>
+
+  <update id="batchDelete" parameterType="List">
+    update system_role set is_del = 1
+    <where>
+      <if test="list != null and list.size() > 0">
+        <foreach collection="list" item="id" open="id in (" separator="," close=")">
+          #{id}
+        </foreach>
+      </if>
+    </where>
+  </update>
+
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.qqw.supermarket.model.Role" useGeneratedKeys="true">
+    insert into system_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        name,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="del != null">
+        is_del,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createAt != null">
+        create_at,
+      </if>
+      <if test="updateAt != null">
+        update_at,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        #{name},
+      </if>
+      <if test="description != null">
+        #{description},
+      </if>
+      <if test="del != null">
+        #{del},
+      </if>
+      <if test="status != null">
+        #{status},
+      </if>
+      <if test="createAt != null">
+        #{createAt},
+      </if>
+      <if test="updateAt != null">
+        #{updateAt},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qqw.supermarket.model.Role">
+    update system_role
+    <set>
+      <if test="name != null">
+        name = #{name},
+      </if>
+      <if test="description != null">
+        description = #{description},
+      </if>
+      <if test="del != null">
+        is_del = #{del},
+      </if>
+      <if test="status != null">
+        status = #{status},
+      </if>
+      <if test="createAt != null">
+        create_at = #{createAt},
+      </if>
+      <if test="updateAt != null">
+        update_at = #{updateAt},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+
+  <delete id="deleteAccountRole" parameterType="String">
+    delete from system_account_role
+    where account_id = #{id}
+  </delete>
+
+  <insert id="insertAccountRole" parameterType="Map">
+    insert into system_account_role (account_id, role_id)
+    values
+    <foreach collection="ids" item="roleId" separator=",">
+      (#{id} , #{roleId})
+    </foreach>
+
+  </insert>
+</mapper>

@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qqw.supermarket.dao.GoodsDao">
+  <resultMap id="BaseResultMap" type="com.qqw.supermarket.model.Goods">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="number" jdbcType="VARCHAR" property="number" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="for_short" jdbcType="VARCHAR" property="forShort" />
+    <result column="purchase_price" jdbcType="DOUBLE" property="purchasePrice" />
+    <result column="selling_price" jdbcType="DOUBLE" property="sellingPrice" />
+    <result column="place_origin" jdbcType="VARCHAR" property="placeOrigin" />
+    <result column="specification" jdbcType="VARCHAR" property="specification" />
+    <result column="unit_id" jdbcType="INTEGER" property="unitId" />
+    <result column="category_id" jdbcType="INTEGER" property="categoryId" />
+    <result column="category_number" jdbcType="VARCHAR" property="categoryNumber" />
+    <result column="category_name" jdbcType="VARCHAR" property="categoryName" />
+    <result column="status" jdbcType="BIT" property="status" />
+    <result column="provider_id" jdbcType="INTEGER" property="providerId" />
+    <result column="provider_umber" jdbcType="VARCHAR" property="providerUmber" />
+    <result column="provider_name" jdbcType="VARCHAR" property="providerName" />
+    <result column="brand_name" jdbcType="VARCHAR" property="brandName" />
+    <result column="memo" jdbcType="VARCHAR" property="memo" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, number, name, for_short, purchase_price, selling_price, place_origin, specification, 
+    unit_id, category_id, category_number, category_name, status, provider_id, provider_umber, 
+    provider_name, brand_name, memo
+  </sql>
+  <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from goods
+    where id = #{id}
+  </select>
+
+  <delete id="deleteByNumber" parameterType="java.lang.Integer">
+    delete from goods
+    where number=#{number}
+  </delete>
+
+  <select id="list"  resultMap="BaseResultMap" parameterType="map">
+    select
+    <include refid="Base_Column_List" />
+    from goods
+    <where>
+      <if test="categoryId != null and categoryId != ''">
+        and category_id = #{categoryId}
+      </if>
+      <if test="search != null and search != ''">
+        and (name like '%${search}%' or number like '%${search}%' or category_name like '%${search}%')
+      </if>
+      <if test="sort != null">
+        order by ${sort}
+      </if>
+      <if test="sort != null and order != null">
+        ${order}
+      </if>
+    </where>
+  </select>
+
+  <select id="getCategoryGoodsNumber" resultType="int">
+		select count(*) from goods where category_id = #{id}
+	</select>
+
+  <select id="listAllCategory" resultType="long">
+			select DISTINCT category_id from goods
+	</select>
+
+  <select id="listCategoryGoods" resultMap="BaseResultMap" parameterType="int">
+    select
+    <include refid="Base_Column_List" />
+    from goods
+    where category_id = #{categoryId}
+	</select>
+
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.qqw.supermarket.model.Goods" useGeneratedKeys="true">
+    insert into goods
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="number != null">
+        number,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="forShort != null">
+        for_short,
+      </if>
+      <if test="purchasePrice != null">
+        purchase_price,
+      </if>
+      <if test="sellingPrice != null">
+        selling_price,
+      </if>
+      <if test="placeOrigin != null">
+        place_origin,
+      </if>
+      <if test="specification != null">
+        specification,
+      </if>
+      <if test="unitId != null">
+        unit_id,
+      </if>
+      <if test="categoryId != null">
+        category_id,
+      </if>
+      <if test="categoryNumber != null">
+        category_number,
+      </if>
+      <if test="categoryName != null">
+        category_name,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="providerId != null">
+        provider_id,
+      </if>
+      <if test="providerUmber != null">
+        provider_umber,
+      </if>
+      <if test="providerName != null">
+        provider_name,
+      </if>
+      <if test="brandName != null">
+        brand_name,
+      </if>
+      <if test="memo != null">
+        memo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="number != null">
+        #{number},
+      </if>
+      <if test="name != null">
+        #{name},
+      </if>
+      <if test="forShort != null">
+        #{forShort},
+      </if>
+      <if test="purchasePrice != null">
+        #{purchasePrice},
+      </if>
+      <if test="sellingPrice != null">
+        #{sellingPrice},
+      </if>
+      <if test="placeOrigin != null">
+        #{placeOrigin},
+      </if>
+      <if test="specification != null">
+        #{specification},
+      </if>
+      <if test="unitId != null">
+        #{unitId},
+      </if>
+      <if test="categoryId != null">
+        #{categoryId},
+      </if>
+      <if test="categoryNumber != null">
+        #{categoryNumber},
+      </if>
+      <if test="categoryName != null">
+        #{categoryName},
+      </if>
+      <if test="status != null">
+        #{status},
+      </if>
+      <if test="providerId != null">
+        #{providerId},
+      </if>
+      <if test="providerUmber != null">
+        #{providerUmber},
+      </if>
+      <if test="providerName != null">
+        #{providerName},
+      </if>
+      <if test="brandName != null">
+        #{brandName},
+      </if>
+      <if test="memo != null">
+        #{memo},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="com.qqw.supermarket.model.Goods">
+    update goods
+    <set>
+      <if test="number != null">
+        number = #{number},
+      </if>
+      <if test="name != null">
+        name = #{name},
+      </if>
+      <if test="forShort != null">
+        for_short = #{forShort},
+      </if>
+      <if test="purchasePrice != null">
+        purchase_price = #{purchasePrice},
+      </if>
+      <if test="sellingPrice != null">
+        selling_price = #{sellingPrice},
+      </if>
+      <if test="placeOrigin != null">
+        place_origin = #{placeOrigin},
+      </if>
+      <if test="specification != null">
+        specification = #{specification},
+      </if>
+      <if test="unitId != null">
+        unit_id = #{unitId},
+      </if>
+      <if test="categoryId != null">
+        category_id = #{categoryId},
+      </if>
+      <if test="categoryNumber != null">
+        category_number = #{categoryNumber},
+      </if>
+      <if test="categoryName != null">
+        category_name = #{categoryName},
+      </if>
+      <if test="status != null">
+        status = #{status},
+      </if>
+      <if test="providerId != null">
+        provider_id = #{providerId},
+      </if>
+      <if test="providerUmber != null">
+        provider_umber = #{providerUmber},
+      </if>
+      <if test="providerName != null">
+        provider_name = #{providerName},
+      </if>
+      <if test="brandName != null">
+        brand_name = #{brandName},
+      </if>
+      <if test="memo != null">
+        memo = #{memo},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+
+</mapper>

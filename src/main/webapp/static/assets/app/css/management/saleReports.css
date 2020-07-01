@@ -1,0 +1,14 @@
+
+.loadingCon{
+    display: none;
+    width: 300px;
+    height: 100px;
+    line-height: 100px;
+    border: 1px solid #72A6CC;
+    background-color: #F5FBFF;
+    position: fixed;
+    left: 45%;
+    top: 40%;
+    z-index: 100000;
+    padding-left:40px;
+}

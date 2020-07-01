@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qqw.supermarket.dao.SaleDao">
+  <resultMap id="BaseResultMap" type="com.qqw.supermarket.model.Sale">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="list_num" jdbcType="VARCHAR" property="listNum" />
+    <result column="goods_id" jdbcType="VARCHAR" property="goodsId" />
+    <result column="goods_name" jdbcType="VARCHAR" property="goodsName" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="count" jdbcType="INTEGER" property="count" />
+    <result column="money" jdbcType="DOUBLE" property="money" />
+    <result column="pay_time" jdbcType="TIMESTAMP" property="payTime" />
+    <result column="is_del" jdbcType="BIT" property="del" />
+    <result column="status" jdbcType="BIT" property="status" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, list_num, goods_id, goods_name, price, count, money, pay_time, is_del, status, 
+    remark
+  </sql>
+
+  <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sale
+    where is_del = 0 and id = #{id}
+  </select>
+
+  <select id="listSaleByPage"  resultMap="BaseResultMap" parameterType="map">
+    select
+    <include refid="Base_Column_List" />
+    from sale
+    where is_del = 0
+    <if test="search != null and search != ''">
+      and list_num like '%${search}%'
+    </if>
+    <if test="sort != null">
+      order by ${sort}
+    </if>
+    <if test="sort != null and order != null">
+      ${order}
+    </if>
+  </select>
+
+  <select id="selectAll" parameterType="map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from sale
+    where is_del = 0
+    <if test="startDate != null and endDate != null  ">
+      and pay_time BETWEEN #{startDate} and #{endDate}
+    </if>
+    <if test="sort != null">
+      order by ${sort}
+    </if>
+    <if test="sort != null and order != null">
+      ${order}
+    </if>
+  </select>
+
+  <select id="count" resultType="int">
+    select
+    count(*)
+    from sale
+    where is_del = 0
+  </select>
+
+  <update id="deleteById" parameterType="java.lang.Integer">
+    update sale set is_del = 1
+    where id = #{id}
+  </update>
+
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.qqw.supermarket.model.Sale" useGeneratedKeys="true">
+    insert into sale
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="listNum != null">
+        list_num,
+      </if>
+      <if test="goodsId != null">
+        goods_id,
+      </if>
+      <if test="goodsName != null">
+        goods_name,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="count != null">
+        count,
+      </if>
+      <if test="money != null">
+        money,
+      </if>
+      <if test="payTime != null">
+        pay_time,
+      </if>
+      <if test="del != null">
+        is_del,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="listNum != null">
+        #{listNum},
+      </if>
+      <if test="goodsId != null">
+        #{goodsId},
+      </if>
+      <if test="goodsName != null">
+        #{goodsName},
+      </if>
+      <if test="price != null">
+        #{price},
+      </if>
+      <if test="count != null">
+        #{count},
+      </if>
+      <if test="money != null">
+        #{money},
+      </if>
+      <if test="payTime != null">
+        #{payTime},
+      </if>
+      <if test="del != null">
+        #{del},
+      </if>
+      <if test="status != null">
+        #{status},
+      </if>
+      <if test="remark != null">
+        #{remark},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateById" parameterType="com.qqw.supermarket.model.Sale">
+    update sale
+    <set>
+      <if test="listNum != null">
+        list_num = #{listNum},
+      </if>
+      <if test="goodsId != null">
+        goods_id = #{goodsId},
+      </if>
+      <if test="goodsName != null">
+        goods_name = #{goodsName},
+      </if>
+      <if test="price != null">
+        price = #{price},
+      </if>
+      <if test="count != null">
+        count = #{count},
+      </if>
+      <if test="money != null">
+        money = #{money},
+      </if>
+      <if test="payTime != null">
+        pay_time = #{payTime},
+      </if>
+      <if test="del != null">
+        is_del = #{del},
+      </if>
+      <if test="status != null">
+        status = #{status},
+      </if>
+      <if test="remark != null">
+        remark = #{remark},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+</mapper>

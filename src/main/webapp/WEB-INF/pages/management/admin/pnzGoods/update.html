@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<meta charset="utf-8" />
+<title>品农商城-[线上商品]编辑</title>
+<link href="favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+<meta name="keywords" content="通州酒水,通州生鲜,通州水果,通州蔬菜,通州肉,通州蛋,通州促销活动,通州促销产品,北京通糖烟酒糖业有限公司,北京通州区超市"/>
+<meta http-equiv="description" content="北京通州酒水,北京通州生鲜,北京通州促销产品等,北京通州区超市连锁,北京通州区免费送货,北京通州区正品低价、品质保障、配送及时、轻松购物,北京通州品农,北京通州品质"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+<base href="file:///c:/HTML/management/">
+<link rel="stylesheet" href="assets/lib/css/bootstrap.min.css" media="screen"/>
+<link rel="stylesheet" href="assets/lib/css/font-awesome.min.css" />
+<link rel="stylesheet" href="assets/lib/css/metrize.css" />
+<link rel="stylesheet" href="assets/lib/css/animate.css" />
+<link rel="stylesheet" href="assets/lib/css/toastr.min.css" />
+<link rel="stylesheet" href="assets/lib/css/bootstrap-datetimepicker.min.css" />
+<link rel="stylesheet" href="assets/lib/css/chosen.min.css" />
+<link rel="stylesheet" href="assets/lib/css/main.css" />
+<link rel="stylesheet" href="assets/lib/css/slidebars.css" />
+<link rel="stylesheet" href="assets/app/css/management/application.css" />
+<!-- HTML5 shiv and Respond.js IE8 support of HTML5 elements and media \ -->
+<!--[if lt IE 9]>
+<script src="assets/lib/js/html5shiv.min.js"></script>
+<script src="assets/lib/js/respond.min.js"></script>
+<![endif]-->
+
+	<link rel="stylesheet" href="/assets/lib/css/webuploader.css" />
+	<link rel="stylesheet" href="/assets/app/css/management/pnzGoods.css" />
+
+</head>
+<body>
+<!-- Left sidebar start -->
+<aside id="sidebar">
+	<!-- Logo starts -->
+	<a href="admin/home/index.html" class="logo">
+		<img alt="" src="assets/app/images/management/admin_logo.png" style="margin-bottom: 10px;"/>
+		<p class="label">新鲜e客管理平台</p>
+	</a>
+	<!-- Logo ends -->
+	<!-- Menu start -->
+	<div id="menu">
+		<ul>
+			<li>
+				<a href="admin/home/index.html">
+					<div class="fs1 icon-user" aria-hidden="true"></div>
+					<span>个人中心</span>
+				</a>
+			</li>
+					<li class="has-sub">
+						<a href="#">
+							<div class="fs1" aria-hidden="true" data-icon=""></div>
+							<span>机构管理</span>
+						</a>
+						<ul>
+								<li>
+									<a href="admin/pnzDeps/index.html">
+										<span>部门管理</span>
+									</a>
+								</li>
+								<li>
+									<a href="admin/pnzAreas/index.html">
+										<span>区域管理</span>
+									</a>
+								</li>
+								<li>
+									<a href="admin/storehouss/index.html">
+										<span>线下门店</span>
+									</a>
+								</li>
+								<li>
+									<a href="admin/pnzOfflineShops/index.html">
+										<span>线上门店</span>
+									</a>
+								</li>
+						</ul>
+					</li>
+				<li class="has-sub">
+					<a href="#">
+						<div class="fs1" aria-hidden="true" data-icon=""></div>
+						<span>商品管理</span>
+					</a>
+					<ul>
+							<li>
+								<a href="admin/pnzCategorys/index.html">
+									<span>线上类别</span>
+								</a>
+							</li>
+							<li>
+								<a href="admin/goods/index.html">
+									<span>线下商品库</span>
+								</a>
+							</li>
+							<li>
+								<a href="admin/pnzGoods/index.html">
+									<span>线上商品</span>
+								</a>
+							</li>
+						<li>
+						</li>
+					</ul>
+				</li>
+				<li class="has-sub">
+					<a href="#">
+						<div class="fs1" aria-hidden="true" data-icon=""></div>
+						<span>活动管理</span>
+					</a>
+					<ul>
+						<li>
+							<a href="admin/pnzSchedules/index.html">
+								<span>档期管理</span>
+							</a>
+						</li>
+							<li>
+								<a href="admin/pnzOffers/index.html">
+									<span>特价商品管理</span>
+								</a>
+							</li>
+					</ul>
+				</li>
+				<li class="has-sub">
+					<a href="#">
+						<div class="fs1" aria-hidden="true" data-icon=""></div>
+						<span>会员管理</span>
+					</a>
+					<ul>
+						<li>
+							<a href="admin/members/index.html">
+								<span>会员管理</span>
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li class="has-sub">
+					<a href="#">
+						<div class="fs1" aria-hidden="true" data-icon=""></div>
+						<span>订单管理</span>
+					</a>
+					<ul>
+						<li>
+							<a href="admin/pnzOrders/index.html">
+								<span>订单管理</span>
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li class="has-sub">
+					<a href="#">
+						<div class="fs1" aria-hidden="true" data-icon=""></div>
+						<span>系统管理</span>
+					</a>
+					<ul>
+							<li>
+								<a href="admin/systemAccounts/index.html">
+									<span>账号管理</span>
+								</a>
+							</li>
+							<li>
+								<a href="admin/pnzFocuss/index.html">
+									<span>网站轮播图</span>
+								</a>
+							</li>
+					</ul>
+				</li>
+				<li class="has-sub">
+					<a href="#">
+						<div class="fs1 icon-social-stumbleupon" aria-hidden="true"></div>
+						<span>品农文章管理</span>
+					</a>
+					<ul>
+						<li>
+							<a href="admin/articles/1/GYWM/index.html">
+								<span>关于我们</span>
+							</a>
+						</li>
+						<li>
+							<a href="admin/articles/1/FLZC/index.html">
+								<span>法律政策</span>
+							</a>
+						</li>
+						<li>
+							<a href="admin/articles/1/LXWM/index.html">
+								<span>联系我们</span>
+							</a>
+						</li>
+						<li>
+							<a href="admin/articles/1/ZPBZ/index.html">
+								<span>正品保证</span>
+							</a>
+						</li>
+						<li>
+							<a href="admin/articles/1/GWZN/index.html">
+								<span>购物指南</span>
+							</a>
+						</li>
+						<li>
+							<a href="admin/articles/1/FYSM/index.html">
+								<span>费用说明</span>
+							</a>
+						</li>
+						<li>
+							<a href="admin/articles/1/SMRZ/index.html">
+								<span>实名认证</span>
+							</a>
+						</li>
+						<li>
+							<a href="admin/articles/1/QSSM/index.html">
+								<span>签收说明</span>
+							</a>
+						</li>
+						<li>
+							<a href="admin/articles/1/YSSX/index.html">
+								<span>运输时效</span>
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li class="has-sub">
+					<a href="#">
+						<div class="fs1 icon-social-stumbleupon" aria-hidden="true"></div>
+						<span>品质文章管理</span>
+					</a>
+					<ul>
+						<li>
+							<a href="admin/articles/2/GYWM/index.html">
+								<span>关于我们</span>
+							</a>
+						</li>
+						<li>
+							<a href="admin/articles/2/FLZC/index.html">
+								<span>法律政策</span>
+							</a>
+						</li>
+						<li>
+							<a href="admin/articles/2/LXWM/index.html">
+								<span>联系我们</span>
+							</a>
+						</li>
+						<li>
+							<a href="admin/articles/2/ZPBZ/index.html">
+								<span>正品保证</span>
+							</a>
+						</li>
+						<li>
+							<a href="admin/articles/2/GWZN/index.html">
+								<span>购物指南</span>
+							</a>
+						</li>
+						<li>
+							<a href="admin/articles/2/FYSM/index.html">
+								<span>费用说明</span>
+							</a>
+						</li>
+						<li>
+							<a href="admin/articles/2/SMRZ/index.html">
+								<span>实名认证</span>
+							</a>
+						</li>
+						<li>
+							<a href="admin/articles/2/QSSM/index.html">
+								<span>签收说明</span>
+							</a>
+						</li>
+						<li>
+							<a href="admin/articles/2/YSSX/index.html">
+								<span>运输时效</span>
+							</a>
+						</li>
+					</ul>
+				</li>
+					<li class="has-sub">
+						<a href="#">
+							<div class="fs1 icon-social-stumbleupon" aria-hidden="true"></div>
+							<span>官方微信管理</span>
+						</a>
+						<ul>
+								<li>
+									<a href="admin/wxArticles/indexCompanyProfile/index.html">
+										<span>公司简介</span>
+									</a>
+								</li>
+								<li>
+									<a href="admin/wxArticles/indexContactUs/index.html">
+										<span>联系方式</span>
+									</a>
+								</li>
+								<li>
+									<a href="admin/wxArticles/index.html">
+										<span>海报发布</span>
+									</a>
+								</li>
+						</ul>
+					</li>
+			<li class="has-sub">
+				<a href="#">
+					<div class="fs1 icon-social-stumbleupon" aria-hidden="true"></div>
+					<span>报表管理</span>
+				</a>
+				<ul>
+					<li>
+						<a href="admin/saleReports/index/index.html">
+							<span>销售额统计</span>
+						</a>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+	<!-- Menu End -->
+</aside>
+<!-- Left sidebar end -->
+<!-- Dashboard Wrapper Start -->
+<div class="dashboard-wrapper">
+	<!-- Header start -->
+<header>
+	<ul class="pull-left" id="left-nav">
+		<li >
+			<div class="logo-mob clearfix">
+				<h2>
+					<div class="fs1" aria-hidden="true" data-icon="&#xe0db;"></div>
+					<span>新鲜e客</span>
+				</h2>
+			</div>
+		</li>
+	</ul>
+	<div class="pull-right">
+		<ul id="mini-nav" class="clearfix">
+			<li class="list-box hidden-xs dropdown">
+				<a href="#" role="button" class="dropdown-toggle current-user" data-toggle="dropdown">
+					admin[管理员] <b class="caret"></b>
+				</a>
+				<ul class="dropdown-menu sm fadeInUp animated">
+					<li class="dropdown-content">
+						<a href="admin/home/index.html" data-original-title="" title=""><i class="fa fa-user"></i> 个人资料</a>
+						<a href="admin/systemAccounts/updatePasswd" data-original-title="" title=""><i class="fa fa-envelope-o"></i> 修改密码</a>
+						<a href="admin/logout" data-original-title="" title=""><i class="fa fa-power-off"></i> 退出登录</a>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+</header>
+	<!-- Header ends -->
+	<!-- Right sidebar start -->
+	<!-- Right sidebar end -->
+	<!-- Main Container Start -->
+	<div class="main-container">
+		<!-- Top Bar Starts -->
+		<div class="top-bar clearfix">
+			
+	<div class="page-title">
+        <h4>
+            <div class="fs1" aria-hidden="true" data-icon="&#xe0ac;"></div>
+            商品管理 <a href="admin/pnzGoods/index.html" class="samll">[线上商品]管理</a>
+        </h4>
+    </div>
+
+		</div>
+		<!-- Top Bar Ends -->
+		<!-- Container fluid Starts -->
+		<div class="container-fluid">
+			<!-- Spacer starts -->
+			<div class="spacer-xs">
+				
+
+
+
+<div class="row no-gutter">
+	<div class="col-md-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4>编辑[线上商品]</h4>
+			</div>
+			<div class="panel-body">
+<form id="pnzGoodForm" class="                   form-horizontal" action="#" method="post"><input type="hidden" name="_method" value="put"/>
+	<div class="form-group"><label class="col-sm-3 control-label no-padding-right" for="goodName">商品名称</label><div class="col-xs-12 col-sm-5"><input id="goodName" name="goodName" class="form-control" placeholder="请输入商品名称" type="text" value="信远斋酸梅汤300ML"/></div></div>
+	<div class="form-group"><label class="col-sm-3 control-label no-padding-right" for="good.goodscostavgprice">商品成本价</label><div class="col-xs-12 col-sm-5"><input id="good.goodscostavgprice" name="good.goodscostavgprice" class="form-control" type="number" disabled="disabled" value="3.1979"/></div></div>
+	<div class="form-group"><label class="col-sm-3 control-label no-padding-right" for="good.goodspurchaseprice">商品进价</label><div class="col-xs-12 col-sm-5"><input id="good.goodspurchaseprice" name="good.goodspurchaseprice" class="form-control" type="number" disabled="disabled" value="3.1979"/></div></div>
+	<div class="form-group"><label class="col-sm-3 control-label no-padding-right" for="good.goodssellingprice">线下商品售价</label><div class="col-xs-12 col-sm-5"><input id="good.goodssellingprice" name="good.goodssellingprice" class="form-control" type="number" disabled="disabled" value="4.0"/></div></div>
+	<div class="form-group"><label class="col-sm-3 control-label no-padding-right" for="price">商品售价</label><div class="col-xs-12 col-sm-5"><input id="price" name="price" class="form-control input-numberic" placeholder="请输入商品售价" type="text" value="4.0" maxlength="10"/></div></div>
+	<div class="form-group"><label class="col-sm-3 control-label no-padding-right" for="good.goodsPunit.packunitname">单位</label><div class="col-xs-12 col-sm-5"><input id="good.goodsPunit.packunitname" name="good.goodsPunit.packunitname" class="form-control" disabled="disabled" type="text" value="瓶"/></div></div>
+	<div class="form-group"><label class="col-sm-3 control-label no-padding-right" for="good.goodstype.text">商品类型</label><div class="col-xs-12 col-sm-5"><input id="good.goodstype.text" name="good.goodstype.text" class="form-control" disabled="disabled" type="text" value="普通"/></div></div>
+	<div class="form-group"><label class="col-sm-3 control-label no-padding-right" for="statusLine">状态</label><div class="col-xs-12 col-sm-5"><select id="statusLine" name="statusLine" class="form-control" class="form-control"><option value="NORMAL" selected="selected">上架</option><option value="DISABELD">下架</option></select></div></div>
+	<div class="form-group">
+		<label class="col-sm-3 control-label no-padding-right">所属公司</label>
+		<div class="col-sm-5">
+				<select class="form-control chosen-selectSearch" id="dep" name="dep" data-placeholder="请选择公司">
+					<option value="">请选择公司</option>
+						<option value="1" >品农</option>
+						<option value="2"  selected="selected">品质</option>
+						<option value="3" >混合</option>
+				</select>
+		</div>
+	</div>
+		<div class="form-group spfl_con ">
+			<label class="col-sm-3 control-label no-padding-right">商品分类</label>
+			<div class="col-sm-5">
+					<select class="form-control chosen-selectSearch pnzCategory_pn  hide" name="pnzCategory" data-placeholder="请选择商品分类"
+							 disabled="disabled"
+					>
+						<option value="">请选择商品分类</option>
+									<optgroup label="主食类">
+											<option value="92" >主食</option>
+											<option value="93" >豆制品</option>
+									</optgroup>
+									<optgroup label="优选水果">
+											<option value="80" >瓜果</option>
+											<option value="81" >柑橘</option>
+											<option value="82" >桃</option>
+											<option value="83" >热带水果</option>
+											<option value="84" >苹果</option>
+											<option value="85" >梨</option>
+											<option value="86" >葡萄</option>
+									</optgroup>
+									<optgroup label="新鲜蔬菜">
+											<option value="87" >豆类</option>
+											<option value="88" >根茎类</option>
+											<option value="89" >叶菜类</option>
+											<option value="90" >菌类</option>
+											<option value="91" >瓜果类</option>
+									</optgroup>
+					</select>
+					<select class="form-control chosen-selectSearch pnzCategory_pz " name="pnzCategory" data-placeholder="请选择商品分类"
+					>
+						<option value="">请选择商品分类</option>
+									<optgroup label="冲调饮品">
+											<option value="121" >豆浆/麦片</option>
+											<option value="122" >营养品</option>
+											<option value="123" >蜂蜜/柚子茶</option>
+											<option value="124" >奶粉</option>
+											<option value="125" >咖啡/奶茶</option>
+											<option value="126" >茶</option>
+									</optgroup>
+									<optgroup label="时尚饮品">
+											<option value="113" >茶饮料</option>
+											<option value="114" >含乳饮料</option>
+											<option value="115" >奶制品咖啡</option>
+											<option value="116"  selected="selected">果味饮料</option>
+											<option value="117" >饮用水</option>
+											<option value="118" >功能饮料</option>
+											<option value="119" >养生饮品</option>
+											<option value="120" >碳酸饮料</option>
+									</optgroup>
+									<optgroup label="糖果巧克力">
+											<option value="143" >巧克力</option>
+											<option value="144" >糖果</option>
+											<option value="145" >口香糖</option>
+									</optgroup>
+									<optgroup label="时尚零食">
+											<option value="137" >坚果炒货</option>
+											<option value="138" >特色零食</option>
+											<option value="139" >进口食品</option>
+											<option value="140" >膨化</option>
+											<option value="141" >蜜饯干果</option>
+											<option value="142" >糕点饼干</option>
+									</optgroup>
+									<optgroup label="中外名酒">
+											<option value="108" >葡萄酒</option>
+											<option value="109" >啤酒</option>
+											<option value="110" >白酒</option>
+											<option value="111" >洋酒</option>
+											<option value="112" >黄酒/养生酒</option>
+									</optgroup>
+									<optgroup label="家用清洁">
+											<option value="132" >家庭清洁</option>
+											<option value="133" >除菌消毒</option>
+											<option value="134" >衣物清洁</option>
+											<option value="135" >生活用纸</option>
+											<option value="136" >厨房用具</option>
+									</optgroup>
+									<optgroup label="个人护理">
+											<option value="127" >洗发护发</option>
+											<option value="128" >口腔护理</option>
+											<option value="129" >面部护肤</option>
+											<option value="130" >身体护肤</option>
+											<option value="131" >女性护理</option>
+									</optgroup>
+									<optgroup label="粮油调味">
+											<option value="153" >方便食品</option>
+											<option value="154" >食用油</option>
+											<option value="155" >罐头</option>
+											<option value="156" >调味品</option>
+											<option value="157" >米面杂粮</option>
+											<option value="158" >干货</option>
+									</optgroup>
+									<optgroup label="冷饮冻食">
+											<option value="146" >速冻半成品</option>
+											<option value="147" >奶酪/黄油</option>
+											<option value="148" >常/低温奶</option>
+											<option value="149" >冰淇淋</option>
+											<option value="150" >水饺面点</option>
+											<option value="151" >火锅丸串</option>
+											<option value="152" >汤圆</option>
+									</optgroup>
+					</select>
+			</div>
+		</div>
+		<div class="form-group yygl_con ">
+			<label class="col-sm-3 control-label no-padding-right">隶属APP运营分类</label>
+			<div class="col-sm-5 m-mt5">
+					<div class="yygl_pn  hide">
+							<label for="pn_yygl_74">
+								<input class="yygl_ra" type="radio" id="pn_yygl_74" name="logicCategory" value="103"
+								 disabled="disabled"
+								>&nbsp;主食类
+							</label>&nbsp;&nbsp;&nbsp;
+							<label for="pn_yygl_75">
+								<input class="yygl_ra" type="radio" id="pn_yygl_75" name="logicCategory" value="101"
+								 disabled="disabled"
+								>&nbsp;水果
+							</label>&nbsp;&nbsp;&nbsp;
+							<label for="pn_yygl_76">
+								<input class="yygl_ra" type="radio" id="pn_yygl_76" name="logicCategory" value="102"
+								 disabled="disabled"
+								>&nbsp;蔬菜
+							</label>&nbsp;&nbsp;&nbsp;
+					</div>
+					<div class="yygl_pz ">
+							<label for="pn_yygl_94">
+								<input class="yygl_ra" type="radio" id="pn_yygl_94" name="logicCategory" value="202"
+								 checked="checked">&nbsp;饮品
+							</label>&nbsp;&nbsp;&nbsp;
+							<label for="pn_yygl_95">
+								<input class="yygl_ra" type="radio" id="pn_yygl_95" name="logicCategory" value="204"
+								>&nbsp;休闲食品
+							</label>&nbsp;&nbsp;&nbsp;
+							<label for="pn_yygl_96">
+								<input class="yygl_ra" type="radio" id="pn_yygl_96" name="logicCategory" value="201"
+								>&nbsp;酒水
+							</label>&nbsp;&nbsp;&nbsp;
+							<label for="pn_yygl_97">
+								<input class="yygl_ra" type="radio" id="pn_yygl_97" name="logicCategory" value="203"
+								>&nbsp;家居生活
+							</label>&nbsp;&nbsp;&nbsp;
+							<label for="pn_yygl_98">
+								<input class="yygl_ra" type="radio" id="pn_yygl_98" name="logicCategory" value="205"
+								>&nbsp;副食
+							</label>&nbsp;&nbsp;&nbsp;
+					</div>
+			</div>
+		</div>
+	<div class="form-group">
+		<label class="col-sm-3 control-label no-padding-right">商品图片</label>
+		<div class="col-sm-5">
+			<div  class="uploader" data-userid="" data-fieldName="imgFocus">
+				<div class="picker"><i class="fa fa-check-circle-o"></i> 选择商品图片</div>
+				<p class="help-block">商品详细内容宽度建议是500*450px</p>
+				<div class="queueList">
+							<img src="/share/img/7c75b9ef06b47661f44b2d29ad3b1660.jpg" width="120px" height="120px"/>
+							<img src="/share/img/90530b537dfafc3e7173e0b7dd2bf340.jpg" width="120px" height="120px"/>
+							<img src="/share/img/e70cc01c22a5d0f65ea0abc3f014eb72.jpg" width="120px" height="120px"/>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-3 control-label no-padding-right" for="remark">商品描述</label>
+		<div class="col-xs-12 col-sm-5">
+			<textarea id="remark" name="remark" class="form-control"></textarea>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-3 control-label no-padding-right">商品详细</label>
+		<div class="col-xs-12 col-sm-8">
+			<p class="help-block">商品详细内容宽度建议是990px</p>
+			<textarea id="detail" name="detail" style="width: 1000px; height:600px;"></textarea>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-3"></div>
+		<div class="col-xs-12 col-sm-5">
+			<button type="submit" class="btn btn-primary btn-sm">保存</button>
+			<a href="admin/pnzGoods/index.html" class="btn btn-default btn-sm">返回</a>
+		</div>
+	</div>
+</form>
+			</div>
+		</div>
+	</div>
+</div>
+			</div>
+			<!-- Spacer ends -->
+		</div>
+		<!-- Container fluid ends -->
+	</div>
+	<!-- Main Container Start -->
+	<!-- Footer Start -->
+	<footer>
+		Copyright <strong><span>2016-2020</span></strong> . All Rights Reserved.
+	</footer>
+	<!-- Footer end -->
+</div>
+<!-- Dashboard Wrapper End -->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="assets/lib/js/jquery.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="assets/lib/js/bootstrap.min.js"></script>
+<!-- Animated Right Sidebar -->
+<script src="assets/lib/js/slidebars.js"></script>
+<script src="assets/lib/js/toastr.min.js"></script>
+<!-- Date time select -->
+<script src="assets/lib/js/moment.min.js"></script>
+<script src="assets/lib/js/moment.zh-cn.js"></script>
+<script src="assets/lib/js/bootstrap-datetimepicker.min.js"></script>
+<script src="assets/lib/js/chosen.jquery.min.js"></script>
+<!-- Custom JS -->
+<script src="assets/lib/js/custom.js"></script>
+<script type="text/javascript">
+	jQuery.ctx = ""; //在js中可以直接通过$.ctx来获取应用程序上下文
+	jQuery.servletPath = "/management/pnzGoods/221/update";//在js中可以直接通过$.servletPath 来获取请求的路径
+</script>
+<script type="text/javascript" src="assets/app/js/management/application.js"></script>
+
+	<script type="text/javascript" src="/assets/lib/js/kindeditor/kindeditor-all-min.js"></script>
+	<script type="text/javascript" src="/assets/lib/js/kindeditor/lang/zh-CN.js"></script>
+	<script type="text/javascript" src="/assets/lib/js/md5.js"></script>
+	<script type="text/javascript" src="/assets/lib/js/webuploader.min.js"></script>
+	<script type="text/javascript" src="/assets/app/js/management/springstage.fileupload.plugin.js"></script>
+	<script type="text/javascript" src="/assets/app/js/management/pnzGoods.js"></script>
+
+<div id="modal-ajax" class="modal fade" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content"></div>
+	</div>
+</div>
+</body>
+</html>
